@@ -1,10 +1,9 @@
 import {
   Bike, BookOpen,
-  Heart, Home, Laptop, Store,
+  Heart, Home, Laptop,
   ShoppingCart, Sparkles, Wrench, Zap,
 } from "lucide-react";
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
 import { TopBar } from "@/components/TopBar";
 import { OrderModal } from "@/components/OrderModal";
 import { BrandLogo } from "@/components/BrandLogo";
@@ -129,8 +128,6 @@ export function StoreLayout({ children, activeCategory }: StoreLayoutProps) {
           <div className="flex items-center gap-1 md:gap-3">
             <CustomerCart />
             <CustomerOrders />
-            {/* No public login: staff and vendors open /login directly. */}
-            <Button asChild className="h-11 rounded-full px-5 text-sm font-bold"><a href="/register"><Store className="size-4" /> Jiunge Nasi</a></Button>
           </div>
         </div>
 
@@ -146,7 +143,6 @@ export function StoreLayout({ children, activeCategory }: StoreLayoutProps) {
             <div className="flex items-center gap-2">
               <CustomerCart />
               <CustomerOrders />
-              <Button asChild size="sm" className="h-9 rounded-full px-3 text-xs font-bold"><a href="/register"><Store className="size-4" /> Jiunge Nasi</a></Button>
             </div>
           </div>
           <SmartSearch placeholder={t('searchPlaceholder')} compact onSelect={handleSearchSelect} />

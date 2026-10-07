@@ -10,6 +10,7 @@ import { TopBar } from "@/components/TopBar";
 import { Footer } from "@/components/Footer";
 import { OrderModal } from "@/components/OrderModal";
 import { BrandLogo } from "@/components/BrandLogo";
+import { PartnersSection } from "@/components/PartnersSection";
 import { ServicePrice } from "@/components/ServicePrice";
 import { CustomerOrders } from "@/components/CustomerOrders";
 import { CustomerCart } from "@/components/CustomerCart";
@@ -139,8 +140,6 @@ function Storefront() {
         <div className="flex items-center gap-1 md:gap-3">
           <CustomerCart />
           <CustomerOrders />
-          {/* No public login: staff and vendors open /login directly. */}
-          <Button asChild className="h-11 rounded-full px-5 text-sm font-bold"><a href="/register"><Store className="size-4" /> Jiunge Nasi</a></Button>
         </div>
       </div>
 
@@ -157,7 +156,6 @@ function Storefront() {
           <div className="flex items-center gap-2">
             <CustomerCart />
             <CustomerOrders />
-            <Button asChild size="sm" className="h-9 rounded-full px-3 text-xs font-bold"><a href="/register"><Store className="size-4" /> Jiunge Nasi</a></Button>
           </div>
         </div>
         
@@ -270,6 +268,8 @@ function Storefront() {
           )}
         </div>
       </section>
+
+      <PartnersSection />
     </main>
     <Footer />
     <OrderModal

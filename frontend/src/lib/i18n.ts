@@ -53,6 +53,20 @@ export const translations = {
     addToCart: "Add to Cart",
     orderNow: "Order Now",
 
+    // Partners section (vendor sign-up + login)
+    partnersEyebrow: "For vendors & partners",
+    partnersTitle: "Grow with Duka Magic Expressway",
+    partnersSubtitle: "Sell your goods and services to more customers — we buy from you and handle delivery.",
+    joinUsTitle: "Jiunge Nasi",
+    joinUsDesc: "Register your business and start receiving orders.",
+    joinUsPerk1: "Reach more customers every day",
+    joinUsPerk2: "We collect and deliver for you",
+    joinUsPerk3: "Get paid for every order",
+    joinUsCta: "Register your business",
+    loginCardTitle: "Already a partner?",
+    loginCardDesc: "Vendors and staff sign in to manage orders, products and payments.",
+    loginCardCta: "Login",
+
     // Services section
     priceFrom: "From",
     priceOnRequest: "Price on request",
@@ -160,6 +174,20 @@ export const translations = {
     viewAllProducts: "Tazama Bidhaa Zote",
     addToCart: "Weka Kikapuni",
     orderNow: "Agiza Sasa",
+
+    // Partners section (vendor sign-up + login)
+    partnersEyebrow: "Kwa wauzaji na washirika",
+    partnersTitle: "Kua pamoja na Duka Magic Expressway",
+    partnersSubtitle: "Uza bidhaa na huduma zako kwa wateja wengi zaidi — tunanunua kwako na kushughulikia usafirishaji.",
+    joinUsTitle: "Jiunge Nasi",
+    joinUsDesc: "Sajili biashara yako na anza kupokea maagizo.",
+    joinUsPerk1: "Fikia wateja wengi zaidi kila siku",
+    joinUsPerk2: "Tunachukua na kuwasilisha kwa ajili yako",
+    joinUsPerk3: "Lipwa kwa kila agizo",
+    joinUsCta: "Sajili biashara yako",
+    loginCardTitle: "Tayari ni mshirika?",
+    loginCardDesc: "Wauzaji na wafanyakazi ingia kusimamia maagizo, bidhaa na malipo.",
+    loginCardCta: "Ingia",
 
     // Services section
     priceFrom: "Kuanzia",
