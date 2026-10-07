@@ -5,5 +5,3 @@
 __pycache__/
 *.py[cod]
 db.sqlite3
-/media/
-/static/
