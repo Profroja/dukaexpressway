@@ -52,9 +52,15 @@ export type ApiProduct = {
   listing_type?: "product" | "service";
 };
 
-export async function fetchProducts(): Promise<ApiProduct[]> {
+export async function fetchProducts(
+  filters: { category?: string; type?: "product" | "service" } = {},
+): Promise<ApiProduct[]> {
   try {
-    const res = await fetch("/api/catalog/");
+    const params = new URLSearchParams();
+    if (filters.category) params.set("category", filters.category);
+    if (filters.type) params.set("type", filters.type);
+    const query = params.toString();
+    const res = await fetch(`/api/catalog/${query ? `?${query}` : ""}`);
     if (!res.ok) return [];
     const data = await res.json();
     const products = Array.isArray(data.products) ? data.products : [];
@@ -65,17 +71,26 @@ export async function fetchProducts(): Promise<ApiProduct[]> {
   }
 }
 
+/**
+ * Goods come back as category "Goods" with the real category ("Electronics")
+ * as the sub-category, so match either field.
+ */
+export function inCategory(p: ApiProduct, dbName: string) {
+  const name = dbName.trim().toLowerCase();
+  return (
+    (p.subcategory || "").trim().toLowerCase() === name ||
+    (p.category || "").trim().toLowerCase() === name
+  );
+}
+
 export async function fetchProductsByCategory(categoryIndex: number): Promise<ApiProduct[]> {
-  const all = await fetchProducts();
   const categoryKey = categoryKeys[categoryIndex];
-  if (!categoryKey) return all;
-  if (categoryKey === "services") return all.filter((p) => p.listing_type === "service");
+  if (!categoryKey) return fetchProducts();
+  if (categoryKey === "services") return fetchProducts({ type: "service" });
   const dbName = categoryDbNames[categoryKey];
-  if (!dbName) return all;
-  return all.filter((p) => {
-    const cat = (p.category || p.subcategory || "").trim();
-    return cat === dbName;
-  });
+  if (!dbName) return fetchProducts();
+  const items = await fetchProducts({ category: dbName, type: "product" });
+  return items.filter((p) => inCategory(p, dbName));
 }
 
 interface StoreLayoutProps {

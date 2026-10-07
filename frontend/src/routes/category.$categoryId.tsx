@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Footer } from "@/components/Footer";
 import { OrderModal } from "@/components/OrderModal";
 import { ServicePrice } from "@/components/ServicePrice";
-import { StoreLayout, categoryIcons, categoryKeys, categoryDbNames, fetchProducts, type ApiProduct } from "@/components/StoreLayout";
+import { StoreLayout, categoryIcons, fetchProducts, fetchProductsByCategory, type ApiProduct } from "@/components/StoreLayout";
 import { useLanguage } from "@/lib/LanguageContext";
 import { addToCart } from "@/lib/customerCart";
 
@@ -23,26 +23,22 @@ function CategoryPage() {
 
   const catIndex = parseInt(categoryId, 10);
   const isValid = !isNaN(catIndex) && catIndex >= 0 && catIndex < categoryIcons.length;
-  const categoryKey = isValid ? categoryKeys[catIndex] : "";
-  const dbName = categoryKey ? categoryDbNames[categoryKey] : "";
 
   useEffect(() => {
+    let cancelled = false;
     setLoading(true);
-    fetchProducts().then((all) => {
-      if (!dbName) {
-        setProducts(all);
-      } else if (categoryKey === "services") {
-        setProducts(all.filter((p) => p.listing_type === "service"));
-      } else {
-        const filtered = all.filter((p) => {
-          const cat = (p.category || p.subcategory || "").trim();
-          return cat === dbName;
-        });
-        setProducts(filtered);
-      }
+    const request = !isValid
+      ? fetchProducts()
+      : fetchProductsByCategory(catIndex);
+    request.then((items) => {
+      if (cancelled) return;
+      setProducts(items);
       setLoading(false);
     });
-  }, [dbName, categoryKey]);
+    return () => {
+      cancelled = true;
+    };
+  }, [catIndex, isValid]);
 
   return (
     <div className="flex min-h-screen flex-col">
