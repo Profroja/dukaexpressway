@@ -17,6 +17,7 @@ import {
   CircleUserRound,
 } from "lucide-react";
 import { useEffect, useState } from "react";
+import { BrandLogo } from "@/components/BrandLogo";
 
 export const Route = createFileRoute("/admin")({
   component: AdminLayout,
@@ -80,9 +81,7 @@ function AdminLayout() {
         {/* Logo */}
         <div className="flex items-center justify-between p-6 border-b border-slate-700">
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-orange-600 flex items-center justify-center">
-              <span className="text-white font-black text-sm">ME</span>
-            </div>
+            <BrandLogo className="size-8 rounded-lg" />
             <span className="font-bold text-lg text-white">
               Duka Magic <em className="not-italic text-primary">Expressway</em>
             </span>

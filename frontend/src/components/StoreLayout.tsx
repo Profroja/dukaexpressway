@@ -1,13 +1,13 @@
 import {
-  Bike, BookOpen, CircleUserRound,
-  Heart, Home, Laptop,
+  Bike, BookOpen,
+  Heart, Home, Laptop, Store,
   ShoppingCart, Sparkles, Wrench, Zap,
 } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { TopBar } from "@/components/TopBar";
-import { AuthModal } from "@/components/AuthModal";
 import { OrderModal } from "@/components/OrderModal";
+import { BrandLogo } from "@/components/BrandLogo";
 import { CustomerOrders } from "@/components/CustomerOrders";
 import { CustomerCart } from "@/components/CustomerCart";
 import { SmartSearch, type CatalogItem } from "@/components/SmartSearch";
@@ -100,7 +100,6 @@ interface StoreLayoutProps {
 
 export function StoreLayout({ children, activeCategory }: StoreLayoutProps) {
   const { t } = useLanguage();
-  const [authModalOpen, setAuthModalOpen] = useState(false);
   const [orderModalOpen, setOrderModalOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<ApiProduct | null>(null);
 
@@ -120,7 +119,7 @@ export function StoreLayout({ children, activeCategory }: StoreLayoutProps) {
         {/* Desktop Layout */}
         <div className="mx-auto hidden h-20 max-w-[1500px] grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-4 px-4 lg:grid lg:gap-10 lg:px-7">
           <a href="/" className="flex shrink-0 items-center gap-2" aria-label="Duka Magic Expressway home">
-            <span className="brand-mark">ME</span>
+            <BrandLogo />
             <span className="hidden sm:block">
               <strong className="block text-2xl font-black leading-none text-navy">Duka Magic <em className="not-italic text-primary">Expressway</em></strong>
               <small className="text-[10px] font-bold text-muted-foreground">{t('goodsServices')}</small>
@@ -130,7 +129,8 @@ export function StoreLayout({ children, activeCategory }: StoreLayoutProps) {
           <div className="flex items-center gap-1 md:gap-3">
             <CustomerCart />
             <CustomerOrders />
-            <Button className="h-11 rounded-full px-5 text-sm font-bold" onClick={() => setAuthModalOpen(true)}><CircleUserRound className="size-4" /> Login</Button>
+            {/* No public login: staff and vendors open /login directly. */}
+            <Button asChild className="h-11 rounded-full px-5 text-sm font-bold"><a href="/register"><Store className="size-4" /> Jiunge Nasi</a></Button>
           </div>
         </div>
 
@@ -138,6 +138,7 @@ export function StoreLayout({ children, activeCategory }: StoreLayoutProps) {
         <div className="mx-auto max-w-[1500px] px-4 py-3 lg:hidden">
           <div className="flex items-center justify-between mb-3">
             <a href="/" className="flex shrink-0 items-center gap-2" aria-label="Duka Magic Expressway home">
+              <BrandLogo className="size-9 rounded-lg" />
               <div>
                 <strong className="block text-xl font-black leading-none text-navy">Duka Magic <em className="not-italic text-primary">Expressway</em></strong>
               </div>
@@ -145,7 +146,7 @@ export function StoreLayout({ children, activeCategory }: StoreLayoutProps) {
             <div className="flex items-center gap-2">
               <CustomerCart />
               <CustomerOrders />
-              <Button size="sm" className="h-9 rounded-full px-3 text-xs font-bold" onClick={() => setAuthModalOpen(true)}><CircleUserRound className="size-4" /> Login</Button>
+              <Button asChild size="sm" className="h-9 rounded-full px-3 text-xs font-bold"><a href="/register"><Store className="size-4" /> Jiunge Nasi</a></Button>
             </div>
           </div>
           <SmartSearch placeholder={t('searchPlaceholder')} compact onSelect={handleSearchSelect} />
@@ -173,7 +174,6 @@ export function StoreLayout({ children, activeCategory }: StoreLayoutProps) {
         </div>
       </div>
 
-      <AuthModal open={authModalOpen} onClose={() => setAuthModalOpen(false)} />
       <OrderModal
         product={selectedProduct}
         open={orderModalOpen}

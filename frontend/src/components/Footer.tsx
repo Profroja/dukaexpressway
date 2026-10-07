@@ -4,6 +4,7 @@ import {
 } from "lucide-react";
 import marketHeroImage from "@/assets/market-hero.jpg";
 import { useLanguage } from "@/lib/LanguageContext";
+import { BrandLogo } from "@/components/BrandLogo";
 
 export function Footer() {
   const { t } = useLanguage();
@@ -27,7 +28,7 @@ export function Footer() {
           {/* Brand Column */}
           <div className="lg:col-span-3">
             <div className="flex items-center justify-center gap-2 lg:justify-start">
-              <span className="brand-mark text-white">ME</span>
+              <BrandLogo className="ring-2 ring-white/20" />
               <div>
                 <strong className="block text-xl leading-none text-white">
                   Duka Magic <em className="not-italic text-primary">Expressway</em>

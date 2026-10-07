@@ -1,6 +1,6 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import {
-  Bike, BookOpen, ChevronLeft, ChevronRight, CircleUserRound, Flame,
+  Bike, BookOpen, ChevronLeft, ChevronRight, Flame,
   Heart, Home, Laptop, Store,
   ShoppingCart, Sparkles, Wrench, Zap,
 } from "lucide-react";
@@ -8,8 +8,8 @@ import { useEffect, useRef, useState, type ReactNode } from "react";
 import { Button } from "@/components/ui/button";
 import { TopBar } from "@/components/TopBar";
 import { Footer } from "@/components/Footer";
-import { AuthModal } from "@/components/AuthModal";
 import { OrderModal } from "@/components/OrderModal";
+import { BrandLogo } from "@/components/BrandLogo";
 import { ServicePrice } from "@/components/ServicePrice";
 import { CustomerOrders } from "@/components/CustomerOrders";
 import { CustomerCart } from "@/components/CustomerCart";
@@ -83,7 +83,6 @@ type ApiService = {
 function Storefront() {
   const { t } = useLanguage();
   const navigate = useNavigate();
-  const [authModalOpen, setAuthModalOpen] = useState(false);
   const [orderModalOpen, setOrderModalOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<ApiProduct | null>(null);
   const [banner, setBanner] = useState(0);
@@ -134,13 +133,14 @@ function Storefront() {
       {/* Desktop Layout */}
       <div className="mx-auto hidden h-20 max-w-[1500px] grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-4 px-4 lg:grid lg:gap-10 lg:px-7">
         <a href="#" className="flex shrink-0 items-center gap-2" aria-label="Magic Expressway home">
-          <span className="brand-mark">ME</span><span className="hidden sm:block"><strong className="block text-2xl font-black leading-none text-navy">Duka Magic <em className="not-italic text-primary">Expressway</em></strong><small className="text-[10px] font-bold text-muted-foreground">{t('goodsServices')}</small></span>
+          <BrandLogo /><span className="hidden sm:block"><strong className="block text-2xl font-black leading-none text-navy">Duka Magic <em className="not-italic text-primary">Expressway</em></strong><small className="text-[10px] font-bold text-muted-foreground">{t('goodsServices')}</small></span>
         </a>
         <SmartSearch placeholder={t('searchPlaceholder')} onSelect={handleSearchSelect} />
         <div className="flex items-center gap-1 md:gap-3">
           <CustomerCart />
           <CustomerOrders />
-          <Button className="h-11 rounded-full px-5 text-sm font-bold" onClick={() => setAuthModalOpen(true)}><CircleUserRound className="size-4" /> Login</Button>
+          {/* No public login: staff and vendors open /login directly. */}
+          <Button asChild className="h-11 rounded-full px-5 text-sm font-bold"><a href="/register"><Store className="size-4" /> Jiunge Nasi</a></Button>
         </div>
       </div>
 
@@ -149,6 +149,7 @@ function Storefront() {
         {/* Top Row: Logo + Icons */}
         <div className="flex items-center justify-between mb-3">
 <a href="#" className="flex shrink-0 items-center gap-2" aria-label="Duka Magic Expressway home">
+            <BrandLogo className="size-9 rounded-lg" />
             <div>
               <strong className="block text-xl font-black leading-none text-navy">Duka Magic <em className="not-italic text-primary">Expressway</em></strong>
             </div>
@@ -156,7 +157,7 @@ function Storefront() {
           <div className="flex items-center gap-2">
             <CustomerCart />
             <CustomerOrders />
-            <Button size="sm" className="h-9 rounded-full px-3 text-xs font-bold" onClick={() => setAuthModalOpen(true)}><CircleUserRound className="size-4" /> Login</Button>
+            <Button asChild size="sm" className="h-9 rounded-full px-3 text-xs font-bold"><a href="/register"><Store className="size-4" /> Jiunge Nasi</a></Button>
           </div>
         </div>
         
@@ -271,7 +272,6 @@ function Storefront() {
       </section>
     </main>
     <Footer />
-    <AuthModal open={authModalOpen} onClose={() => setAuthModalOpen(false)} />
     <OrderModal
       product={selectedProduct}
       open={orderModalOpen}

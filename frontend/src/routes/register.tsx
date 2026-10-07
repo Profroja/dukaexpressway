@@ -34,6 +34,7 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/lib/LanguageContext";
+import { BrandLogo } from "@/components/BrandLogo";
 import heroImage from "@/assets/market-hero.jpg";
 
 declare global {
@@ -342,7 +343,7 @@ function RegisterPage() {
           {/* Logo */}
           <div className="mb-6 text-center">
             <div className="inline-flex items-center gap-2">
-              <span className="brand-mark text-white">ME</span>
+              <BrandLogo className="size-12 rounded-2xl ring-2 ring-white/20" />
               <div>
                 <strong className="block text-2xl font-black leading-none text-white">
                   Duka Magic <em className="not-italic text-primary">Expressway</em>
