@@ -11,6 +11,7 @@ import { Footer } from "@/components/Footer";
 import { OrderModal } from "@/components/OrderModal";
 import { BrandLogo } from "@/components/BrandLogo";
 import { PartnersSection } from "@/components/PartnersSection";
+import { AppDownloadSection } from "@/components/AppDownloadSection";
 import { ServicePrice } from "@/components/ServicePrice";
 import { CustomerOrders } from "@/components/CustomerOrders";
 import { CustomerCart } from "@/components/CustomerCart";
@@ -270,6 +271,8 @@ function Storefront() {
       </section>
 
       <PartnersSection />
+
+      <AppDownloadSection />
     </main>
     <Footer />
     <OrderModal

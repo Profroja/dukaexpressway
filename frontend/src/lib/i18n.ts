@@ -53,6 +53,17 @@ export const translations = {
     addToCart: "Add to Cart",
     orderNow: "Order Now",
 
+    // App download section
+    appEyebrow: "Get the app",
+    appTitle: "Shop faster with the Duka Magic app",
+    appSubtitle: "Order goods, book services and follow every delivery — right from your phone.",
+    appFeature1: "Order in a few taps",
+    appFeature2: "Track every delivery live",
+    appFeature3: "Book services anytime",
+    appGooglePre: "GET IT ON",
+    appApplePre: "Download on the",
+    appComingSoon: "Coming soon",
+
     // Partners section (vendor sign-up + login)
     partnersEyebrow: "For vendors & partners",
     partnersTitle: "Grow with Duka Magic Expressway",
@@ -174,6 +185,17 @@ export const translations = {
     viewAllProducts: "Tazama Bidhaa Zote",
     addToCart: "Weka Kikapuni",
     orderNow: "Agiza Sasa",
+
+    // App download section
+    appEyebrow: "Pakua programu",
+    appTitle: "Nunua haraka zaidi kwa programu ya Duka Magic",
+    appSubtitle: "Agiza bidhaa, weka huduma na fuatilia kila usafirishaji — moja kwa moja kwenye simu yako.",
+    appFeature1: "Agiza kwa kugusa mara chache",
+    appFeature2: "Fuatilia kila usafirishaji",
+    appFeature3: "Weka huduma wakati wowote",
+    appGooglePre: "IPATE KWENYE",
+    appApplePre: "Pakua kwenye",
+    appComingSoon: "Inakuja hivi karibuni",
 
     // Partners section (vendor sign-up + login)
     partnersEyebrow: "Kwa wauzaji na washirika",
